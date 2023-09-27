@@ -1,47 +1,25 @@
-# Astro Starter Kit: Minimal
+# Astro v3 markdown page router Chinese unreadable characters bug minimal reproduction
 
-```
-npm create astro@latest -- --template minimal
-```
+## Bug description
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+In Astro v3, without using content collection and layout, only create markdown files under pages to use page routing, when `astro dev`, Chinese characters are unreadable. After `astro build`, the preview is correct.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Steps to reproduce
 
-## 🚀 Project Structure
+- Create `test.md` file under pages, enter Chinese content
+- Run `astro dev`
+- View the page on `http://localhost:4321/test`，Chinese characters are unreadable
 
-Inside of your Astro project, you'll see the following folders and files:
+## Expected behavior
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Chinese characters are readable
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## astro version
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+windows 10
 
-Any static assets, like images, can be placed in the `public/` directory.
+v3.0.0 - v3.1.4 are all have this bug
 
-## 🧞 Commands
+v2.10.15 was fine
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`astro build` is fine
